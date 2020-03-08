@@ -6,60 +6,64 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
 import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class PemasukanAdapter extends RecyclerView.Adapter<PemasukanAdapter.PemasukanViewHolder> {
-    private List<Pemasukan> pemasukans;
-    private int itemLayout = R.layout.layoutpemasukan;
+public class PemasukanAdapter extends RecyclerView.Adapter<PemasukanAdapter.ViewHolder> {
 
-    public PemasukanAdapter(List<Pemasukan> pemasukans) {
-        this.pemasukans = pemasukans;
-    }
+    public class ViewHolder extends RecyclerView.ViewHolder{
+        public TextView pemasukanNomor;
+        public TextView pemasukanTanggal;
+        public TextView pemasukanJumlah;
+        public TextView pemasukanSumber;
 
-    @Override
-    public int getItemCount() {
-        if(pemasukans == null) {
-            return 0;
+        public ViewHolder(View itemView) {
+            super(itemView);
+
+            pemasukanNomor = (TextView) itemView.findViewById(R.id.pemasukan_nomor);
+            pemasukanTanggal = (TextView) itemView.findViewById(R.id.pemasukan_tanggal);
+            pemasukanJumlah = (TextView) itemView.findViewById(R.id.pemasukan_jumlah);
+            pemasukanSumber = (TextView) itemView.findViewById(R.id.pemasukan_sumber);
         }
-        return pemasukans.size();
     }
+
+    private List<Pemasukan> mPemasukan;
+
+    public PemasukanAdapter(List<Pemasukan> pemasukans) { mPemasukan = pemasukans; }
 
     @NonNull
     @Override
-    public PemasukanAdapter.PemasukanViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        Context context = viewGroup.getContext();
-        View itemView = LayoutInflater.from(context).inflate(itemLayout, viewGroup, false);
-        return new PemasukanViewHolder(itemView);
+    public PemasukanAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        Context context = parent.getContext();
+        LayoutInflater inflater = LayoutInflater.from(context);
+
+        View deadlineView = inflater.inflate(R.layout.item_pemasukan,parent,false);
+
+        ViewHolder viewHolder = new ViewHolder(deadlineView);
+        return viewHolder;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull PemasukanAdapter.PemasukanViewHolder viewHolder, int position) {
-        viewHolder.bind(pemasukans.get(position));
+    public void onBindViewHolder(@NonNull PemasukanAdapter.ViewHolder viewHolder, int position) {
+        Pemasukan pemasukans = mPemasukan.get(position);
+
+        TextView pemasukanNomor = viewHolder.pemasukanNomor;
+        pemasukanNomor.setText(pemasukans.getmNomor());
+
+        TextView pemasukanTanggal = viewHolder.pemasukanTanggal;
+        pemasukanTanggal.setText(pemasukans.getmTanggal());
+
+        TextView pemasukanJumlah = viewHolder.pemasukanJumlah;
+        pemasukanJumlah.setText(pemasukans.getmJumlah());
+
+        TextView pemasukanSumber = viewHolder.pemasukanSumber;
+        pemasukanSumber.setText(pemasukans.getmSumber());
     }
 
-
-    class PemasukanViewHolder extends RecyclerView.ViewHolder {
-        private TextView nomor;
-        private TextView tanggal;
-        private TextView jumlah;
-        private TextView sumber;
-
-        public PemasukanViewHolder(@NonNull View itemView) {
-            super(itemView);
-            nomor = itemView.findViewById(R.id.nomormasuk);
-            tanggal = itemView.findViewById(R.id.tanggalmasuk);
-            jumlah = itemView.findViewById(R.id.jumlahmasuk);
-            sumber = itemView.findViewById(R.id.sumbermasuk);
-        }
-
-        public void bind(Pemasukan pemasukan) {
-            sumber.setText(pemasukan.getSumber());
-            tanggal.setText(pemasukan.getTanggal());
-            jumlah.setText(pemasukan.getJumlah());
-            sumber.setText(pemasukan.getSumber());
-        }
-    }
+    @Override
+    public int getItemCount() { return mPemasukan.size(); }
 }
