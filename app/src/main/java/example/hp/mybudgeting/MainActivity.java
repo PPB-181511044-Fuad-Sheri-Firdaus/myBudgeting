@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
 
     FragmentPemasukan FragmentPemasukan;
 
-    //Intent data = new Intent("");
+    Intent data = new Intent("");
 
     static ArrayList<Pemasukan> pemasukanArrayList = new ArrayList<Pemasukan>();
 
@@ -44,5 +44,25 @@ public class MainActivity extends AppCompatActivity {
         fragmentTransaction.replace(android.R.id.content, FragmentPemasukan);
 
         fragmentTransaction.commit();
+    }
+
+    public void addPemasukan(View view){ startActivityForResult(data,1);}
+
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(requestCode == 1) {
+            if(resultCode == RESULT_OK) {
+                NomorFromIntent1 = data.getStringExtra("pemasukanNomor");
+                TanggalFromIntent1 = data.getStringExtra("pemasukanTanggal");
+                JumlahFromIntent1 = data.getStringExtra("pemasukanJumlah");
+                SumberFromIntent1 = data.getStringExtra("pemasukanSumber");
+                Toast.makeText(this, NomorFromIntent1, Toast.LENGTH_LONG).show();
+                Toast.makeText(this, TanggalFromIntent1, Toast.LENGTH_LONG).show();
+                Toast.makeText(this, JumlahFromIntent1, Toast.LENGTH_LONG).show();
+                Toast.makeText(this, SumberFromIntent1, Toast.LENGTH_LONG).show();
+                pemasukanArrayList.add(new Pemasukan(NomorFromIntent1,TanggalFromIntent1,JumlahFromIntent1,SumberFromIntent1));
+            }
+        }
+        FragmentPemasukan.adapter.notifyDataSetChanged();
+        super.onActivityResult(requestCode,resultCode,data);
     }
 }
