@@ -19,7 +19,7 @@
 
         <activity android:name=".AddPemasukanActivity">
             <intent-filter>
-                <action android:name="com.hp.myBudgeting.AddPemasukanActivity" />
+                <action android:name="example.hp.mybudgeting.AddPemasukanActivity" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>

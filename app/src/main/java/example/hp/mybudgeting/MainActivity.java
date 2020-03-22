@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
 
     FragmentPemasukan FragmentPemasukan;
 
-    Intent data = new Intent("");
+    Intent data = new Intent("example.hp.mybudgeting.AddPemasukanActivity");
 
     static ArrayList<Pemasukan> pemasukanArrayList = new ArrayList<Pemasukan>();
 
@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
         fragmentTransaction.commit();
     }
 
-    public void addPemasukan(View view){ startActivityForResult(data,1);}
+    public void addPemasukan(View view) { startActivityForResult(data, 1); }
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if(requestCode == 1) {
