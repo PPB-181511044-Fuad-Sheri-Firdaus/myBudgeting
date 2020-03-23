@@ -3,14 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="270dp"
+    android:layout_height="120dp"
     android:orientation="horizontal"
     android:paddingTop="10dp"
     android:paddingBottom="10dp">
 
-    <LinearLayout
-        android:layout_width="381dp"
-        android:layout_height="246dp"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="380dp"
+        android:layout_height="match_parent"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -18,50 +18,56 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
+            android:id="@+id/pemasukan_nomor"
             style="@style/CardTitle"
+            android:layout_width="190dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:background="#8b8b8b"
             android:paddingLeft="7dp"
             android:paddingTop="7dp"
-            android:id="@+id/pemasukan_nomor"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/pemasukan_tanggal"
+            style="@style/CardTitle"
+            android:layout_width="190dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:background="#717070"
             android:paddingLeft="7dp"
             android:paddingTop="7dp"
-            android:layout_width="match_parent"
-            android:layout_height="140dp"
-            android:layout_weight="1"
-            />
+            app:layout_constraintStart_toEndOf="@+id/pemasukan_nomor"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/pemasukan_jumlah"
-            android:background="#717070"
-            android:paddingRight="6dp"
-            android:paddingLeft="6dp"
-            android:gravity="right"
-            android:textAlignment="gravity"
             android:layout_width="match_parent"
-            android:layout_height="19dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="24dp"
             android:layout_weight="1"
-            />
+            android:background="#717070"
+            android:gravity="right"
+            android:paddingLeft="6dp"
+            android:paddingRight="6dp"
+            android:textAlignment="gravity"
+            app:layout_constraintTop_toTopOf="@+id/pemasukan_nomor"
+            tools:layout_editor_absoluteX="0dp" />
 
         <TextView
             android:id="@+id/pemasukan_sumber"
-            android:background="#717070"
-            android:paddingRight="6dp"
-            android:paddingLeft="6dp"
-            android:gravity="right"
-            android:textAlignment="gravity"
             android:layout_width="match_parent"
-            android:layout_height="19dp"
+            android:layout_height="40dp"
             android:layout_weight="1"
-            />
-    </LinearLayout>
+            android:background="#717070"
+            android:gravity="right"
+            android:paddingLeft="6dp"
+            android:paddingRight="6dp"
+            android:textAlignment="gravity"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/pemasukan_jumlah" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

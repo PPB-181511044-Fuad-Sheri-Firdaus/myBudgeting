@@ -23,13 +23,17 @@ public class MainActivity extends AppCompatActivity {
     FragmentTransaction fragmentTransaction =fragmentManager.beginTransaction();
 
     FragmentPemasukan FragmentPemasukan;
+    FragmentPengeluaran FragmentPengeluaran;
 
     Intent data = new Intent("example.hp.mybudgeting.AddPemasukanActivity");
 
     static ArrayList<Pemasukan> pemasukanArrayList = new ArrayList<Pemasukan>();
 
     public static ArrayList<Pemasukan> createPemasukanList() {
-        pemasukanArrayList.add(new Pemasukan("1", "12 Januari", "100.000", "Bunga"));
+        pemasukanArrayList.add(new Pemasukan("1", "12/01/2020", "100.000", "Bunga"));
+        pemasukanArrayList.add(new Pemasukan("2", "13/01/2020", "100.000", "Tagihan"));
+        pemasukanArrayList.add(new Pemasukan("3", "14/01/2020", "100.000", "Piutang"));
+        pemasukanArrayList.add(new Pemasukan("4", "15/01/2020", "100.000", "Pinjaman"));
 
         return pemasukanArrayList;
     }
@@ -40,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         FragmentPemasukan = new FragmentPemasukan();
+        FragmentPengeluaran = new FragmentPengeluaran();
 
         fragmentTransaction.replace(android.R.id.content, FragmentPemasukan);
 
